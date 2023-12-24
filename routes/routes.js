@@ -6,6 +6,8 @@ const {
   executePythonWithInput,
 } = require("../executors/executePython");
 
+const { executeC, executeCWithInput } = require("../executors/executeC");
+
 router.post("/run", async (req, res) => {
   try {
     const code = req.body.code;
@@ -17,9 +19,11 @@ router.post("/run", async (req, res) => {
       if (lang === "cpp") output = await executeCPPWithInput(code, input);
       else if (lang === "python")
         output = await executePythonWithInput(code, input);
+      else if (lang === "C") output = await executeCWithInput(code, input);
     } else {
       if (lang === "cpp") output = await executeCPP(code);
       else if (lang === "python") output = await executePython(code, input);
+      else if (lang === "C") output = await executeC(code, input);
     }
 
     res.send(output);
