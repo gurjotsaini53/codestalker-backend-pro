@@ -5,7 +5,7 @@ compiler.init(option);
 
 function executeC(code) {
   return new Promise((resolve, reject) => {
-    compiler.compileC(envData, code, function (data) {
+    compiler.compileCPP(envData, code, function (data) {
       if (data.error) {
         reject(data.error);
       } else {
@@ -17,7 +17,7 @@ function executeC(code) {
 
 function executeCWithInput(code, input) {
   return new Promise((resolve, reject) => {
-    compiler.compileCWithInput(envData, code, input, function (data) {
+    compiler.compileCPP(envData, code, input, function (data) {
       if (data.error) {
         reject(data.error);
       } else {
